@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My Game</title>    <canvas id="canvas"></canvas>
+    <style>
+            body {
+                padding: 0px;
+                margin: 0px;
+            }
+      </style>
+      <script type="text/javascript" src="level1.js"></script>
+      <button id="myButton" class="float-left submit-button" >Click to Finish the Game</button>
+
+      <script type="text/javascript">
+        document.getElementById("myButton").onclick = function () {
+              location.href = "theend.html";
+          };
+
+      </script>
+
+  </head>
+  <body>
+    <div>Time left = <span id="timer"></span></div>
+    <script type="text/javascript">
+    document.getElementById('timer').innerHTML =
+  003 + ":" + 20;
+startTimer();
+
+function startTimer() {
+  var presentTime = document.getElementById('timer').innerHTML;
+  var timeArray = presentTime.split(/[:]+/);
+  var m = timeArray[0];
+  var s = checkSecond((timeArray[1] - 1));
+  if(s==59){m=m-1}
+  if(m<0){
+    alert('Time is up!');
+    return;
+  }
+
+  document.getElementById('timer').innerHTML =
+    m + ":" + s;
+  console.log(m)
+  setTimeout(startTimer, 1000);
+}
+
+function checkSecond(sec) {
+  if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
+  if (sec < 0) {sec = "59"};
+  return sec;
+}
+
+
+    </script>
+  </body>
+</html>
